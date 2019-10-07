@@ -37,14 +37,14 @@ import org.xml.sax.Locator;
 
 import com.ctc.wstx.msv.BaseSchemaFactory;
 import com.ctc.wstx.msv.W3CSchema;
-import com.sun.msv.grammar.ExpressionPool;
-import com.sun.msv.grammar.xmlschema.XMLSchemaGrammar;
-import com.sun.msv.grammar.xmlschema.XMLSchemaSchema;
-import com.sun.msv.reader.GrammarReaderController;
-import com.sun.msv.reader.State;
-import com.sun.msv.reader.xmlschema.MultiSchemaReader;
-import com.sun.msv.reader.xmlschema.SchemaState;
-import com.sun.msv.reader.xmlschema.XMLSchemaReader;
+import com.ctc.wstx.shaded.msv_core.grammar.ExpressionPool;
+import com.ctc.wstx.shaded.msv_core.grammar.xmlschema.XMLSchemaGrammar;
+import com.ctc.wstx.shaded.msv_core.grammar.xmlschema.XMLSchemaSchema;
+import com.ctc.wstx.shaded.msv_core.reader.GrammarReaderController;
+import com.ctc.wstx.shaded.msv_core.reader.State;
+import com.ctc.wstx.shaded.msv_core.reader.xmlschema.MultiSchemaReader;
+import com.ctc.wstx.shaded.msv_core.reader.xmlschema.SchemaState;
+import com.ctc.wstx.shaded.msv_core.reader.xmlschema.XMLSchemaReader;
 
 import org.codehaus.stax2.validation.XMLValidationSchema;
 

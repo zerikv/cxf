@@ -245,17 +245,6 @@
             <artifactId>FastInfoset</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.java.dev.msv</groupId>
-            <artifactId>msv-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>net.java.dev.msv</groupId>
-                    <artifactId>msv-testharness</artifactId>
-                </exclusion>
-            </exclusions>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.asynchttpclient</groupId>
             <artifactId>async-http-client</artifactId>
             <version>${cxf.ahc.version}</version>

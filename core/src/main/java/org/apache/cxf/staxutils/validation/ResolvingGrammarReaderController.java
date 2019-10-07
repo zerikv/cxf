@@ -31,8 +31,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
-import com.sun.msv.reader.GrammarReaderController2;
-import com.sun.msv.reader.xmlschema.DOMLSInputImpl;
+import com.ctc.wstx.shaded.msv_core.reader.GrammarReaderController2;
+import com.ctc.wstx.shaded.msv_core.reader.xmlschema.DOMLSInputImpl;
 
 import org.apache.cxf.common.logging.LogUtils;
 

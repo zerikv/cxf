@@ -166,7 +166,6 @@
         <cxf.microprofile.openapi.version>1.1.2</cxf.microprofile.openapi.version>        
         <cxf.mina.version>2.0.21</cxf.mina.version>
         <cxf.mockito.version>2.28.1</cxf.mockito.version>
-        <cxf.msv.version>2013.6.1</cxf.msv.version>
         <cxf.neethi.version>3.1.1</cxf.neethi.version>
         <cxf.netty.version.range>[4,5)</cxf.netty.version.range>
         <cxf.netty.version>4.1.42.Final</cxf.netty.version>
@@ -215,7 +214,7 @@
         <cxf.validation.api.version>1.1.0.Final</cxf.validation.api.version>
         <cxf.velocity.version>2.1</cxf.velocity.version>
         <cxf.wiremock.version>2.23.2</cxf.wiremock.version>
-        <cxf.woodstox.core.version>5.2.1</cxf.woodstox.core.version>
+        <cxf.woodstox.core.version>6.0.2</cxf.woodstox.core.version>
         <cxf.woodstox.stax2-api.version>4.2</cxf.woodstox.stax2-api.version>
         <cxf.wsdl4j.version>1.6.3</cxf.wsdl4j.version>
         <cxf.wss4j.version>2.3.0-SNAPSHOT</cxf.wss4j.version>
@@ -2412,11 +2411,6 @@
                 </exclusions>
             </dependency>
 
-            <dependency>
-                <groupId>net.java.dev.msv</groupId>
-                <artifactId>msv-core</artifactId>
-                <version>${cxf.msv.version}</version>
-            </dependency>
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-jaxrs</artifactId>
