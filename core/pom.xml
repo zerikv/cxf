@@ -65,7 +65,8 @@
             !sun.misc
         </cxf.osgi.import>
         <cxf.osgi.dynamic.import>
-            org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*,org.apache.karaf.jaas.boot.principal.*
+            org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*,org.apache.karaf.jaas.boot.principal.*,
+            com.sun.xml.messaging.saaj.soap,com.sun.xml.internal.messaging.saaj.soap
         </cxf.osgi.dynamic.import>
         <!-- keep in sync with services exported in activator -->
         <cxf.export.service>
