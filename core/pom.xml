@@ -39,6 +39,8 @@
             org.apache.cxf.*
         </cxf.osgi.export>
         <cxf.osgi.import>
+            com.sun.xml.messaging.saaj.soap;resolution:=optional,
+            com.sun.xml.internal.messaging.saaj.soap;resolution:=optional,
             com.ctc.wstx*;resolution:=optional,
             org.codehaus.stax2*;resolution:=optional,
             com.sun*;resolution:=optional,
@@ -65,8 +67,7 @@
             !sun.misc
         </cxf.osgi.import>
         <cxf.osgi.dynamic.import>
-            org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*,org.apache.karaf.jaas.boot.principal.*,
-            com.sun.xml.messaging.saaj.soap,com.sun.xml.internal.messaging.saaj.soap
+            org.apache.cxf.bus,org.apache.cxf.*,com.ctc.wstx.*,org.apache.karaf.jaas.boot.principal.*
         </cxf.osgi.dynamic.import>
         <!-- keep in sync with services exported in activator -->
         <cxf.export.service>
