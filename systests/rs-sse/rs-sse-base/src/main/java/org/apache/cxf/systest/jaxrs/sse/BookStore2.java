@@ -28,6 +28,7 @@ import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -148,7 +149,36 @@ public class BookStore2 extends BookStoreClientCloseable {
             LOG.error("Wait has been interrupted", ex);
         }
     }
+
+    @GET
+    @Path("/filtered/sse")
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    public void filtered(@Context SseEventSink sink) {
+        new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(200);
+                    sink.close();
+                } catch (final InterruptedException ex) {
+                    LOG.error("Communication error", ex);
+                }
+            }
+        }.start();
+    }
     
+    @GET
+    @Path("/filtered/stats")
+    @Produces(MediaType.TEXT_PLAIN)
+    public int filteredStats() {
+        return BookStoreResponseFilter.getInvocations();
+    }
+
+    @PUT
+    @Path("/filtered/stats")
+    public void clearStats() {
+        BookStoreResponseFilter.reset();
+    }
+
     @Override
     protected Sse getSse() {
         return sse;

@@ -37,6 +37,7 @@ import javax.ws.rs.sse.SseEventSource.Builder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -47,6 +48,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractSseTest extends AbstractSseBaseTest {
+    @Before
+    public void setUp() {
+        assertThat(createWebTarget("/rest/api/bookstore/filtered/stats")
+            .request()
+            .put(null)
+            .getStatus(), equalTo(204));
+
+    }
+    
     @Test
     public void testBooksStreamIsReturnedFromLastEventId() throws InterruptedException {
         final WebTarget target = createWebTarget("/rest/api/bookstore/sse/" + UUID.randomUUID())
@@ -106,6 +116,29 @@ public abstract class AbstractSseTest extends AbstractSseBaseTest {
         }
         // Easing the test verification here, it does not work well for Atm + Jetty
         assertTrue(books.isEmpty());
+    }
+    
+    @Test
+    public void testBooksSseContainerResponseFilterIsCalled() throws InterruptedException {
+        final WebTarget target = createWebTarget("/rest/api/bookstore/filtered/sse");
+        final Collection<Book> books = new ArrayList<>();
+
+        assertThat(createWebTarget("/rest/api/bookstore/filtered/stats")
+            .request()
+            .get(Integer.class), equalTo(0));
+    
+        try (SseEventSource eventSource = SseEventSource.target(target).build()) {
+            eventSource.register(collect(books), System.out::println);
+            eventSource.open();
+            // Give the SSE stream some time to collect all events
+            Thread.sleep(1000);
+        }
+        // Easing the test verification here, it does not work well for Atm + Jetty
+        assertTrue(books.isEmpty());
+
+        assertThat(createWebTarget("/rest/api/bookstore/filtered/stats")
+            .request()
+            .get(Integer.class), equalTo(1));
     }
 
     @Test
@@ -180,6 +213,17 @@ public abstract class AbstractSseTest extends AbstractSseBaseTest {
 
         r.close();
     }
+    
+    @Test
+    public void testBooksContainerResponseFilterIsCalled() throws InterruptedException {
+        Response r = createWebClient("/rest/api/bookstore", MediaType.APPLICATION_JSON).get();
+        assertEquals(Status.OK.getStatusCode(), r.getStatus());
+
+        assertThat(createWebTarget("/rest/api/bookstore/filtered/stats")
+            .request()
+            .get(Integer.class), equalTo(1));
+    }
+
 
     @Test
     public void testBooksStreamIsReturnedFromInboundSseEventsNoDelay() throws InterruptedException {
