@@ -585,6 +585,9 @@ public class AsyncHTTPConduit extends URLConnectionHTTPConduit {
                       new CXFHttpAsyncResponseConsumer(this, inbuf, responseCallback),
                       ctx,
                       callback);
+            if (exception != null) {
+            	reThrowException();
+            }            
         }
 
         protected void retrySetHttpResponse(HttpResponse r) {
@@ -638,13 +641,7 @@ public class AsyncHTTPConduit extends URLConnectionHTTPConduit {
                     //inbuf = null;
 
                     if (exception != null) {
-                        if (exception instanceof IOException) {
-                            throw (IOException)exception;
-                        }
-                        if (exception instanceof RuntimeException) {
-                            throw (RuntimeException)exception;
-                        }
-                        throw new IOException(exception);
+                    	reThrowException();
                     }
 
                     throw new SocketTimeoutException("Read Timeout");
@@ -653,6 +650,16 @@ public class AsyncHTTPConduit extends URLConnectionHTTPConduit {
             return httpResponse;
         }
 
+        private void reThrowException() throws IOException {
+            if (exception instanceof IOException) {
+                throw (IOException)exception;
+            }
+            if (exception instanceof RuntimeException) {
+                throw (RuntimeException)exception;
+            }
+            throw new IOException(exception);       	
+        }
+        
         protected void handleResponseAsync() throws IOException {
             isAsync = true;
         }
